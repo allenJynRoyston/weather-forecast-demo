@@ -1,76 +1,80 @@
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const LiveReloadPlugin = require('webpack-livereload-plugin');
-const Uglify = require("uglifyjs-webpack-plugin");
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+var path = require('path')
+var webpack = require('webpack')
 
 module.exports = {
-  entry: {
-    helloworld: './src/components/helloworld/helloworld',
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Webpack Demo'
-    }),
-    new FaviconsWebpackPlugin({
-      logo: './favicon/favicon.png',
-      prefix: 'icons/',
-      icons: {
-        android: false,
-        appleIcon: false,
-        appleStartup: false,
-        coast: false,
-        favicons: true,
-        firefox: false,
-        opengraph: false,
-        twitter: false,
-        yandex: false,
-        windows: false
-      }
-    }),
-    new LiveReloadPlugin(),
-    new Uglify({
-      sourceMap: true
-    }),
-    new webpack.SourceMapDevToolPlugin()
-  ],
+  entry: './src/dev.js',
   output: {
-    filename: '[name].bundle.min.js',
-    path: path.resolve(__dirname, 'dist/source')
+    path: path.resolve(__dirname, './dist'),
+    publicPath: '/dist/',
+    filename: 'build.js'
   },
   module: {
-    loaders: [
-        {
-            test: /\.js$/,
-            exclude: /(node_modules)/,
-            loader: 'babel-loader',
-            query: {
-                presets: ['es2015']
-            }
-        }
-    ],
     rules: [
       {
-        test: /\.css$/,
-          use: [
-            'style-loader',
-            'css-loader'
-          ]
-        },
-        {
-          test: /\.(png|svg|jpg|gif)$/,
-          use: [
-            'file-loader'
-          ]
-        },
-        {
-          test: /\.(woff|woff2|eot|ttf|otf)$/,
-          use: [
-            'file-loader'
-          ]
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: {
+          loaders: {
+            // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
+            // the "scss" and "sass" values for the lang attribute to the right configs here.
+            // other preprocessors should work out of the box, no loader config like this necessary.
+            'scss': 'vue-style-loader!css-loader!sass-loader',
+            'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax',
+            'js': 'babel-loader?presets[]=es2015,presets[]=stage-3,plugins[]=transform-runtime'
+          }
+          // other vue-loader options go here
         }
+      },
+      {
+          test: /\.css$/,
+          use: [ 'style-loader', 'css-loader' ]
+      },
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]?[hash]'
+        }
+      }
     ]
-  }
-};
+  },
+  resolve: {
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js'
+    }
+  },
+  devServer: {
+    historyApiFallback: true,
+    noInfo: true
+  },
+  performance: {
+    hints: false
+  },
+  devtool: '#eval-source-map'
+}
+
+if (process.env.NODE_ENV === 'production') {
+  module.exports.devtool = '#source-map'
+  // http://vue-loader.vuejs.org/en/workflow/production.html
+  module.exports.plugins = (module.exports.plugins || []).concat([
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+      compress: {
+        warnings: false
+      }
+    }),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true
+    })
+  ])
+}

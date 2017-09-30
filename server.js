@@ -1,22 +1,19 @@
-// required packages
-const path = require('path');
-const express = require('express');
-const favicon = require('serve-favicon');
-const webpack = require('webpack');
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const app = express();
-const config = require('./webpack.config.js');
-const compiler = webpack(config);
+const express = require('express')
+const request = require('request')
+const fs = require('fs')
+const path = require('path')
+const bundle = fs.readFileSync(path.join(__dirname, './dist/server.js'), 'utf8')
+const renderer = require('vue-server-renderer').createBundleRenderer(bundle)
+const index = fs.readFileSync(path.join(__dirname, './index.html'), 'utf8')
 const compression = require('compression');
-const router = express.Router();
+const app = express()
 
-// Tell express to use the webpack-dev-middleware and use the webpack.config.js
+//
+const openWeatherAppKey = "661e80346d232c78158726c9b7b62524";
+
+
+// setup compression
 app.use(compression())
-app.use('/node_modules', express.static(__dirname + '/node_modules/'));
-app.use('/icons', express.static(__dirname + '/icons/'));
-
-// set favicon
-app.use(favicon(path.join(__dirname, 'favicon/', 'favicon.ico')))
 
 // set cache headers
 app.use(function (req, res, next) {
@@ -26,11 +23,31 @@ app.use(function (req, res, next) {
   next()
 })
 
-// webpack configuration
-app.use(webpackDevMiddleware(compiler, {
-  publicPath: config.output.publicPath
-}));
+// read from folder /dist
+app.use('/dist', express.static(path.join(__dirname, './dist')))
+
+// for live data
+app.get('/api/forecast/:city', (req, res) => {
+  request("http://api.openweathermap.org/data/2.5/forecast?q=" + req.params.city + "&mode=json&appid=" + openWeatherAppKey, function (error, response, body) {
+    res.send(JSON.parse(body))
+  })
+})
+
+app.get('*', (req, res) => {
+    renderer.renderToString({},
+        (err, html) => {
+          try{
+            res.send(index.replace('<div id="app"></div>', html))
+          }
+          catch (err) {
+            return res.sendStatus(500)
+          }
+        }
+    )
+})
 
 
 // Serve the files on port 3000.
-app.listen(process.env.PORT || 3000)
+app.listen(process.env.PORT || 3000, function () {
+  console.log('App listening on port ' + (process.env.PORT || 3000) + '\n' );
+});

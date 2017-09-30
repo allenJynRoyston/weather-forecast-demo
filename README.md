@@ -1,25 +1,18 @@
-# Webpack + ES6 Boilerplate
+# ssr-vue
 
-### Live Preview
-[Click here](https://dashboard.heroku.com/apps/vue-weather-forecast/deploy/heroku-git)
+> A Vue.js project
 
-### Instructions
+## Build Setup
 
-```
+``` bash
+# install dependencies
 npm install
 
-For live reload and testing:
-npm run dev (for local development - browser will automatically redirect to localhost:8080)
+# serve with hot reload at localhost:8080
+npm run dev
 
-
-For server preview:  
-npm run builddev
-npm start (for local testing)
-
-
-Before publishing, make sure you build the prod site:
-npm run buildprod
-
+# build for production with minification
+npm run build
 ```
 
-This will install everything and start a local server. 
+For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
