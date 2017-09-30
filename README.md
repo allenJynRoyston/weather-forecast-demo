@@ -1,18 +1,25 @@
 # Webpack + ES6 Boilerplate
 
 ### Live Preview
-[Click here](https://es6-webpack-boilerplate.herokuapp.com/)
+[Click here](https://dashboard.heroku.com/apps/vue-weather-forecast/deploy/heroku-git)
 
-### Why?
-Start a new project with all the bells and whistles of ES6, webpack and optimization in mind!
+### Instructions
 
 ```
-git clone https://github.com/allenRoyston/es6-webpack-boilerplate.git
-cd es6-webpack-boilerplate
 npm install
-npm start
 
-// open a browser and enter localhost:3000
+For live reload and testing:
+npm run dev (for local development - browser will automatically redirect to localhost:8080)
+
+
+For server preview:  
+npm run builddev
+npm start (for local testing)
+
+
+Before publishing, make sure you build the prod site:
+npm run buildprod
+
 ```
 
 This will install everything and start a local server. 
