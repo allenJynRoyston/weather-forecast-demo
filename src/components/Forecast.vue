@@ -53,8 +53,9 @@ export default {
     async getForecast(cityName){
       //console.log(cityName)
       try{
-        //let res = await this.$http.get(`/api/forecast/${cityName}`);
-        let res = await this.$http.get(`/src/assets/testdata.json`);
+        let res = await this.$http.get(`/api/forecast/${cityName}`);
+        //let res = await this.$http.get(`/src/assets/testdata.json`);
+        this.dateObject = {};
         for (let item of res.body.list){
           let key = moment(item.dt_txt).format('dddd');
           if(!this.dateObject.hasOwnProperty(key)){
