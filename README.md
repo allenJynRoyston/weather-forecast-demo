@@ -1,21 +1,18 @@
-# testvue
+# Webpack + ES6 Boilerplate
 
-> A Vue.js project
+### Live Preview
+[Click here](https://es6-webpack-boilerplate.herokuapp.com/)
 
-## Build Setup
+### Why?
+Start a new project with all the bells and whistles of ES6, webpack and optimization in mind!
 
-``` bash
-# install dependencies
+```
+git clone https://github.com/allenRoyston/es6-webpack-boilerplate.git
+cd es6-webpack-boilerplate
 npm install
+npm start
 
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
+// open a browser and enter localhost:3000
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+This will install everything and start a local server. 
