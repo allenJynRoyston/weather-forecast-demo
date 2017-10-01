@@ -8,6 +8,9 @@ import Router from 'vue-router'
 Vue.use(Router)
 Vue.use(Vuetify)
 Vue.use(VueResource);
+Vue.component('PageHeader', require('../components/Header.vue'))
+Vue.component('PageFooter', require('../components/Footer.vue'))
+
 
 export default new Router({
   routes: [

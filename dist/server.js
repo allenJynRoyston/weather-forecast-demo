@@ -276,15 +276,9 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
-//
-//
 
 exports.default = {
-  name: 'app',
-  components: {}
+  name: 'app'
 };
 
 /***/ }),
@@ -435,22 +429,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "app"
     }
-  }, [_c('router-view'), _c('v-footer', {
-    staticClass: "blue darken-2"
-  }, [_c('v-layout', {
-    staticClass: "row wrap align-center"
-  }, [_c('v-flex', {
-    staticClass: "xs12"
-  }, [_c('div', {
-    staticClass: "white--text ml-3"
-  }, [_vm._v("Made with"), _c('v-icon', {
-    staticClass: "red--text"
-  }, [_vm._v("favorite")]), _c('a', {
-    staticClass: "white--text",
-    attrs: {
-      "href": "mailto:allen.royston.uk@gmail.com"
-    }
-  }, [_vm._v("Allen Royston")])], 1)])], 1)], 1)], 1)
+  }, [_c('page-header'), _c('router-view'), _c('page-footer')], 1)
 },staticRenderFns: []}
 
 /***/ }),

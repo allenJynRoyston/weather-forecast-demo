@@ -1,44 +1,50 @@
 <template lang="pug">
-  div
-    v-toolbar
-      v-toolbar-title
-        router-link(to="/") Forecast Weather App Demo
-      v-spacer
-      v-toolbar-side-icon.hidden-md-and-up
-      v-toolbar-items.hidden-sm-and-down
-          router-link(to="/forecast")
-            .flat
-              img.title-logo(src='src/assets/weather.png')
-    .container.weather-container
-      v-card.secondary.elevation-0
+  .container.weather-container
+      v-card.grey.lighten-4.elevation-2
           v-card-text
               v-container
                 v-layout.row
                   v-flex.xs4
-                    v-subheader.grey--text.text--lighten-1 Enter City Name
+                    v-subheader.black--text
+                      v-icon(large) keyboard
                   |
                   v-flex.xs8
-                    v-text-field.input-group--focused(v-model="cityName" @keyup="keymonitor" label='Enter a city name (i.e. Edinburgh, London, Glasgow)'  dark single-line)
+                    v-text-field.input-group--focused.black--text(v-model="cityName" @keyup="keymonitor" label='Enter a city name (i.e. Edinburgh, London, Glasgow)'  dark single-line)
       div(v-if='isReady')
-        p.right
-         strong results found: &nbsp;&nbsp;
-         | {{forecastResults.city.name}}
-
+        br
+        p
+          span.left
+            v-chip.red.cursor
+              a(@click='clearResults()').white--text Clear Results
+          span.right
+            | {{count}} results found for&nbsp;
+            strong {{forecastResults.city.name.toUpperCase()}}
+        br
         div(v-for='(value, key) in dateObject')
           br
           br
           h4 {{key}}
-            small &nbsp;&nbsp;&nbsp;&nbsp;{{convertToDay(dateObject[key].dt_txt, "MMM Do YY")}}
-          v-data-table.elevation-3(v-bind:headers='tableHeaders' :items='dateObject[key]' hide-actions)
+            small.right.text-orange {{convertToDay(dateObject[key][0].dt_txt, "MMM Do YYYY")}}
+          v-data-table.elevation-3(v-bind:headers='tableHeaders' :items='dateObject[key]')
               template(slot='items', scope='props')
-                td.text-xs-right {{ convertToDay(props.item.dt_txt, 'hh:mm') }}
-                td.text-xs-right(v-for='weather in props.item.weather') {{ weather.description }}
+                td.text-xs-right {{ convertToDay(props.item.dt_txt, 'hh:mm A') }}
+                td.text-xs-right(v-for='weather in props.item.weather') {{ weather.description.toUpperCase() }}
                 td.text-xs-right {{props.item.main.humidity}}
                 td.text-xs-right {{props.item.main.pressure}}
-                td.text-xs-right {{ convertDegrees(props.item.main.temp) }}{{degreeType}}
-                td.text-xs-right {{ convertDegrees(props.item.main.temp_max) }} / {{ convertDegrees(props.item.main.temp_min) }}{{degreeType}}
-          br
-          br
+                td.text-xs-right
+                  a(@click='convertTemperature()') {{ convertDegrees(props.item.main.temp) }}{{degreeType}}
+                td.text-xs-right
+                  a(@click='convertTemperature()') {{ convertDegrees(props.item.main.temp_max) }} / {{ convertDegrees(props.item.main.temp_min) }}{{degreeType}}
+
+      div(v-if='forecastResults !== null')
+        br
+        br
+        br
+        v-chip.red.cursor.right
+          a.right(@click='backToTop()').white--text Back to top
+        br
+        br
+        br
 </template>
 
 <script>
@@ -52,6 +58,7 @@ export default {
       searchResults: null,
       degreeType: '°F',
       dateObject: {},
+      count: null,
       forecastResults: null,
       tableHeaders: [
         {text: 'Time', value: 'time'},
@@ -69,21 +76,28 @@ export default {
   methods: {
     async getForecast(cityName){
       try{
+        this.clearResults()
         let res = await this.$http.get(`/api/forecast/${cityName}`);
         //let res = await this.$http.get(`/src/assets/testdata.json`);
         this.forecastResults = res.body;
-        this.dateObject = {};
         for (let item of res.body.list){
           let key = moment(item.dt_txt).format('dddd');
           if(!this.dateObject.hasOwnProperty(key)){
             this.dateObject[key] = []
           }
+          this.count++;
           this.dateObject[key].push(item)
         }
         this.isReady = true;
       } catch (reason) {
 
       }
+    },
+    clearResults(){
+      this.forecastResults = null;
+      this.dateObject = {};
+      this.count = 0;
+      this.isReady = false;
     },
     keymonitor(event) {
       if(event.keyCode === 13){
@@ -110,6 +124,10 @@ export default {
     },
     convertToDay(value, format){
       return moment(value).format(format);
+    },
+    backToTop(){
+      document.body.scrollTop = 0;            // For Chrome, Safari and Opera
+      document.documentElement.scrollTop = 0; // For IE and Firefox
     }
   }
 }
@@ -120,10 +138,11 @@ export default {
   p
     color: darkorange
 
+  .cursor
+    border: 2px solid green
+    cursor: pointer
+    color: white
+
   .weather-container
       min-height: 1000px
-
-  .title-logo
-      width: 50px
-      height: 50px
 </style>

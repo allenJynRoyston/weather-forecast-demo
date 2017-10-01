@@ -1,22 +1,14 @@
 <template lang="pug">
   div
-    v-toolbar
-      v-toolbar-title
-        router-link(to="/") Forecast Weather App Demo
-      v-spacer
-      v-toolbar-side-icon.hidden-md-and-up
-      v-toolbar-items.hidden-sm-and-down
-          router-link(to="/forecast")
-            .flat
-              img.title-logo(src='src/assets/weather.png')
     main
       section
         v-parallax(src='src/assets/hero.jpg', height='600')
           v-layout.white--text(column='', align-center='', justify-center='')
             h1.white--text.mb-2.display-3 Weather Demo
             .headline.mb-3.text-xs-center Powered by Vue | Vuetify | ES6 | Webpack | Express4
-            router-link(to="/forecast")
-              v-btn.blue.lighten-2.mt-5.dark.large Forecast
+            a(@click='backToTop()')
+              router-link(@click='backToTop()' to="/forecast")
+                v-btn.blue.lighten-2.mt-5.dark.large Forecast
     section
       v-layout.my-5.column.wrap.align-center
         v-flex.my-3.xs12.sm4
@@ -61,8 +53,10 @@
       v-parallax(src='src/assets/road.jpg', height='380')
         v-layout(column='', align-center='', justify-center='')
           .headline.white--text.mb-3 Weather checking is literally as simple as clicking this button
-          router-link(to="/forecast")
-            v-btn.blue.lighten-2.mt-5.dark.large Forecast
+          a(@click='backToTop()')
+            router-link(to="/forecast")
+              v-btn.blue.lighten-2.mt-5.dark.large Forecast
+
     section
       v-container(grid-list-xl='')
         v-layout.my-5(row='', wrap='', justify-center='')
@@ -110,7 +104,10 @@ export default {
 
   },
   methods: {
-
+    backToTop(){
+      document.body.scrollTop = 0;            // For Chrome, Safari and Opera
+      document.documentElement.scrollTop = 0; // For IE and Firefox
+    }
   }
 }
 </script>
