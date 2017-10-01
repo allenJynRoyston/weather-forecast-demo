@@ -50,15 +50,12 @@ $ git push heroku master
 - Mobile optimization
 - Server side rendering
 - Image optimization
-~~- Cleaner/more reliable webpack build~~
-<br>
-~~- Better visuals on Forecast page~~
-<br>
+- ~~Cleaner/more reliable webpack build~~
+- ~~Better visuals on Forecast page~~
 - Unit testing
 - Fahrenheit/Celcius conversion (actually built in, just didn't add it in time - damnit)
 - More robust API
-~~- Fix that damn footer~~
-<br>
+- ~~Fix that damn footer~~
 - Instantiate server seperate from the webpack build
 
 
