@@ -46,6 +46,9 @@ $ git push heroku master
 - mobile friendly 
 - easy dev to deployment process
 
+### Optimization Score
+https://gtmetrix.com/reports/vue-weather-forecast.herokuapp.com/UqajhjGM
+
 ### Future Implementations
 - Mobile optimization
 - Server side rendering
