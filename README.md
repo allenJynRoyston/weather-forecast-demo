@@ -60,5 +60,5 @@ $ git push heroku master
 
 
 ### Additional stuff
-- When running npm run builddev or buildserver, sometimes webpack will respond with a minification error.  I couldn't address it in time but everything still works just fine.
-
+- When running npm run builddev or buildserver, sometimes webpack will respond with a minification error.  There's still issues with Babels being unable to minifying some ES6 features.  Will need to wait for a patch before being able to resolve this.
+https://github.com/mishoo/UglifyJS2/issues/448
