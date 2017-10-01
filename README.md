@@ -39,7 +39,15 @@ $ npm run buildserver
 $ git push heroku master
 ```
 
+### Things that went well
+- small final build at < 320kb (without images)
+- fast
+- parallax scrolling always look neat (even in mobile)
+- mobile friendly 
+- easy dev to deployment process
+
 ### Future Implementations
+- Mobile optimization
 - Server side rendering
 - Image optimization
 - Cleaner/more reliable webpack build
