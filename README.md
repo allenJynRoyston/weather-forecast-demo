@@ -18,7 +18,7 @@ $ npm run dev
 ** IMPORTANT:  when running locally, make sure you uncomment one line in src/components/Forecast.vue or you wont get any results back.**
 
 ```sh
-$ let res = await this.$http.get(`/src/assets/testdata.json`);
+let res = await this.$http.get(`/src/assets/testdata.json`);
 ```
 
 
