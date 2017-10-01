@@ -39,6 +39,15 @@ $ npm run buildserver
 $ git push heroku master
 ```
 
+
+### Future Implementations
+- Server side rendering
+- Image optimization
+- Cleaner/more reliable webpack build
+- Better visuals on Forecast page
+- Unit testing
+
+
 ### Additional stuff
-- When running npm run builddev or buildserver, sometimes webpack will respond with a minification error.  Just ignore it; it seems to be a bug with the current version I have installed.  
+- When running npm run builddev or buildserver, sometimes webpack will respond with a minification error.  I couldn't address it in time but everything still works just fine.
 
