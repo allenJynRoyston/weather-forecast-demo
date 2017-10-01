@@ -40,7 +40,7 @@ $ git push heroku master
 ```
 
 ### Things that went well
-- small final build at < 320kb (without images)
+- small final build at < ~~320kb~~ 263kb (without images)
 - fast
 - parallax scrolling always look neat (even in mobile)
 - mobile friendly 
