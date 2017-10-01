@@ -50,15 +50,15 @@ $ git push heroku master
 - Mobile optimization
 - Server side rendering
 - Image optimization
-- Cleaner/more reliable webpack build
-- Better visuals on Forecast page
+- ~~Cleaner/more reliable webpack build~~
+- ~~Better visuals on Forecast page~~
 - Unit testing
-- Fahrenheit/Celcius conversion (actually built in, just didn't add it in time - damnit)
+- ~~Fahrenheit/Celcius conversion (actually built in, just didn't add it in time - damnit)~~
 - More robust API
-- Fix that damn footer
+- ~~Fix that damn footer~~
 - Instantiate server seperate from the webpack build
 
 
 ### Additional stuff
-- When running npm run builddev or buildserver, sometimes webpack will respond with a minification error.  I couldn't address it in time but everything still works just fine.
+- ~~When running npm run builddev or buildserver, sometimes webpack will respond with a minification error.  There's still issues with Babels being unable to minifying some ES6 features.  Will need to wait for a patch before being able to resolve this. https://github.com/mishoo/UglifyJS2/issues/448~~  FIXED BECAUSE I'M AWESOME
 
