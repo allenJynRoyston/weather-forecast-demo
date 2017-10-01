@@ -3,6 +3,7 @@
 
 ### Preview
 [Click here](https://vue-weather-forecast.herokuapp.com/)
+br
 *Could take a minute - the server sleeps when not in use*
  
 Install instructions:
