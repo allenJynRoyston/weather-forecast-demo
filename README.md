@@ -46,6 +46,10 @@ $ git push heroku master
 - Better visuals on Forecast page
 - Unit testing
 - Fahrenheit/Celcius conversion (actually built in, just didn't add it in time - damnit)
+- More robust API
+- Fix that damn footer
+- Instantiate server seperate from the webpack build
+
 
 ### Additional stuff
 - When running npm run builddev or buildserver, sometimes webpack will respond with a minification error.  I couldn't address it in time but everything still works just fine.
