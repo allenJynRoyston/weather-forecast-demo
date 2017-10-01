@@ -51,7 +51,7 @@ https://gtmetrix.com/reports/vue-weather-forecast.herokuapp.com/UqajhjGM
 
 ### Future Implementations
 - Mobile optimization
-- Server side rendering
+- ~~Server side rendering~~ I think this works now... *shrug*
 - Image optimization
 - ~~Cleaner/more reliable webpack build~~
 - ~~Better visuals on Forecast page~~
