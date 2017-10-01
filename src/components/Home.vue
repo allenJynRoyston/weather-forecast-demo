@@ -1,5 +1,14 @@
 <template lang="pug">
   div
+    v-toolbar
+      v-toolbar-title
+        router-link(to="/") Forecast Weather App Demo
+      v-spacer
+      v-toolbar-side-icon.hidden-md-and-up
+      v-toolbar-items.hidden-sm-and-down
+          router-link(to="/forecast")
+            .flat
+              img.title-logo(src='src/assets/weather.png')
     main
       section
         v-parallax(src='src/assets/hero.jpg', height='600')
@@ -98,21 +107,17 @@ export default {
     }
   },
   created: function () {
-    this.bar();
+
   },
   methods: {
-    async foo(){
-      console.log( "Async works in Hello!" )
-    },
-    async bar(){
-      await this.foo();
-    }
+
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="sass" scoped>
-
-
+  .title-logo
+    width: 50px
+    height: 50px
 </style>
