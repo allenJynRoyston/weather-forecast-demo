@@ -2,7 +2,7 @@
 
 
 ### Preview
-[Click here](https://vue-weather-forecast.herokuapp.com/
+[Click here](https://vue-weather-forecast.herokuapp.com/)
 
  
 Install instructions:
