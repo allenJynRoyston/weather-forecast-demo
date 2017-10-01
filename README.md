@@ -6,7 +6,8 @@
 <br>
 *Could take a minute - the server sleeps when not in use*
  
-Install instructions:
+
+### Install instructions:
 ```sh
 $ git clone https://github.com/allenRoyston/weather-forecast-demo.git
 $ cd weather-forecast-demo
@@ -22,8 +23,7 @@ let res = await this.$http.get(`/src/assets/testdata.json`);
 ```
 
 
-
-Pre Deployment Instructions:
+### Predeployment instructions:
 ```sh
 $ npm install
 $ npm run builddev
@@ -31,14 +31,13 @@ $ npm run buildserver
 $ npm start  
 ```
 
-If using Heroku:
+### Heroku Deployment:
 ```sh
 $ npm install
 $ npm run builddev
 $ npm run buildserver
 $ git push heroku master
 ```
-
 
 ### Future Implementations
 - Server side rendering
