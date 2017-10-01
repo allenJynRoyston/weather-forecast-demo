@@ -1,36 +1,34 @@
 <template lang="pug">
-  div
-    label City Name:
-    input(v-model="cityName" @change='getForecast(cityName)' placeholder="Enter a city name")
-
-    button(@click='degreeType = "°F"') °F
-    button(@click='degreeType = "°C"') °C
-
+  div.container.weather-container
+    v-card.secondary.elevation-0
+        v-card-text
+            v-container
+              v-layout.row
+                v-flex.xs4
+                  v-subheader.grey--text.text--lighten-1 Enter City Name
+                |
+                v-flex.xs8
+                  v-text-field.input-group--focused(v-model="cityName" @keyup="keymonitor" label='Enter a city name (i.e. Edinburgh, London, Glasgow)'  dark single-line)
     div(v-if='isReady')
-      div(v-for='(value, key) in dateObject')
-        hr
-        br
-        h3 {{key}}
-        table(style='width: 100%;')
-          thead
-            tr
-              th Time
-              th Weather
-              th Humidity
-              th Pressure
-              th Temperature
-              th Max / Min
-          tbody
-            tr(v-for='item in dateObject[key]')
-              td {{ convertToDay(item.dt_txt) }}
-              td(v-for='weather in item.weather') {{ weather.description }}
-              td {{item.main.humidity}}
-              td {{item.main.pressure}}
-              td {{ convertDegrees(item.main.temp) }}{{degreeType}}
-              td {{ convertDegrees(item.main.temp_max) }} / {{ convertDegrees(item.main.temp_min) }}{{degreeType}}
+      p.right
+       strong results found: &nbsp;&nbsp;
+       | {{forecastResults.city.name}}
 
-          br
-          br
+      div(v-for='(value, key) in dateObject')
+        br
+        br
+        h4 {{key}}
+          small &nbsp;&nbsp;&nbsp;&nbsp;{{convertToDay(dateObject[key].dt_txt, "MMM Do YY")}}
+        v-data-table.elevation-3(v-bind:headers='tableHeaders' :items='dateObject[key]' hide-actions)
+            template(slot='items', scope='props')
+              td.text-xs-right {{ convertToDay(props.item.dt_txt, 'hh:mm') }}
+              td.text-xs-right(v-for='weather in props.item.weather') {{ weather.description }}
+              td.text-xs-right {{props.item.main.humidity}}
+              td.text-xs-right {{props.item.main.pressure}}
+              td.text-xs-right {{ convertDegrees(props.item.main.temp) }}{{degreeType}}
+              td.text-xs-right {{ convertDegrees(props.item.main.temp_max) }} / {{ convertDegrees(props.item.main.temp_min) }}{{degreeType}}
+        br
+        br
 </template>
 
 <script>
@@ -43,18 +41,27 @@ export default {
       cityName: null,
       searchResults: null,
       degreeType: '°F',
-      dateObject: {}
+      dateObject: {},
+      forecastResults: null,
+      tableHeaders: [
+        {text: 'Time', value: 'time'},
+        {text: 'Description', value: 'description'},
+        {text: 'Humidity', value: 'humidity'},
+        {text: 'Pressure', value: 'pressure'},
+        {text: 'Temperature', value: 'temp'},
+        {text: 'Max / Min', value: 'maxmin'}
+      ]
     }
   },
   created: function () {
-    this.getForecast('london')
+
   },
   methods: {
     async getForecast(cityName){
-      //console.log(cityName)
       try{
         let res = await this.$http.get(`/api/forecast/${cityName}`);
         //let res = await this.$http.get(`/src/assets/testdata.json`);
+        this.forecastResults = res.body;
         this.dateObject = {};
         for (let item of res.body.list){
           let key = moment(item.dt_txt).format('dddd');
@@ -63,11 +70,25 @@ export default {
           }
           this.dateObject[key].push(item)
         }
-        console.log(this.dateObject)
         this.isReady = true;
       } catch (reason) {
-        //alert.log('Search failed: check key or access ')
+
       }
+    },
+    keymonitor(event) {
+      if(event.keyCode === 13){
+        if(this.cityName.length > 0){
+			    this.getForecast(this.cityName)
+        }
+      }
+    },
+    convertTemperature(){
+      if(this.degreeType == '°F'){
+        this.degreeType = '°C'
+      } else {
+        this.degreeType = '°F'
+      }
+      this.convertDegrees(this.degreeType)
     },
     convertDegrees(value){
       if(this.degreeType === '°C'){
@@ -77,17 +98,18 @@ export default {
         return Math.round( parseInt(value) * 9/5 - 459.67 ).toFixed(0)
       }
     },
-    convertToDay(value){
-      return moment(value).format('dddd');
-      //return moment(value).parse('dddd')
+    convertToDay(value, format){
+      return moment(value).format(format);
     }
-
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style lang="sass" scoped>
-p
-  color: orange
+  p
+    color: darkorange
+
+  .weather-container
+      min-height: 800px
 </style>

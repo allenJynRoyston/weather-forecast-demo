@@ -5,7 +5,6 @@ import Forecast from '../components/Forecast.vue'
 import Home from '../components/Home.vue'
 import Router from 'vue-router'
 
-
 Vue.use(Vuetify)
 Vue.use(Router)
 Vue.use(VueResource);
