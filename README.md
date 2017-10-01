@@ -14,7 +14,11 @@ $ npm install
 $ npm run dev
 ```
 - Browser should open automatically and will hot reload when making changes to components.  
-
+<br>
+** IMPORTANT:  when running locally, make sure you uncomment one line in src/components/Forecast.vue or you wont get any results back.**
+```sh
+ //let res = await this.$http.get(`/src/assets/testdata.json`);
+```
 
 
 Pre Deployment Instructions:
