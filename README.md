@@ -14,12 +14,22 @@ $ npm run dev
 ```
 - Browser should open automatically and will hot reload when making changes to components.  
 
+
+
 Pre Deployment Instructions:
 ```sh
 $ npm install
 $ npm run builddev
 $ npm run buildserver
 $ npm start  
+```
+
+If using Heroku:
+```sh
+$ npm install
+$ npm run builddev
+$ npm run buildserver
+$ git push heroku master
 ```
 
 ### Additional stuff
