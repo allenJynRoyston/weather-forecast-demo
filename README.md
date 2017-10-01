@@ -40,5 +40,5 @@ $ git push heroku master
 ```
 
 ### Additional stuff
-- When running npm run builddev or buildserver, sometimes webpack will respond with a minification.  Just ignore it; it seems to be a bug with the current version I have installed.  
+- When running npm run builddev or buildserver, sometimes webpack will respond with a minification error.  Just ignore it; it seems to be a bug with the current version I have installed.  
 
