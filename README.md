@@ -53,7 +53,7 @@ $ git push heroku master
 - ~~Cleaner/more reliable webpack build~~
 - ~~Better visuals on Forecast page~~
 - Unit testing
-- Fahrenheit/Celcius conversion (actually built in, just didn't add it in time - damnit)
+- ~~Fahrenheit/Celcius conversion (actually built in, just didn't add it in time - damnit)~~
 - More robust API
 - ~~Fix that damn footer~~
 - Instantiate server seperate from the webpack build
