@@ -31,7 +31,7 @@ This build is an all encompassing solution that makes developing AND deployming 
 
 Also, if you're using a service like Heroku, deploying is SUPER simple.  (See below).
 
-### Heroku Deployment:
+### Deploy to Live Environment (Heroku Example):
 ```sh
 // run npm install, gulp, and make your changes
 $ npm run buildserver
