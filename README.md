@@ -20,8 +20,9 @@ $ npm run dev
 ### Okay, but why Gulp?
 We're using Webpack, so why do we even need Gulp?  Well an interesting problem came up when I was trying to access an endpoint in my server.js file.  The route (api/forecast/:city) is only available when the server is running, but Webpack can't start the Express server since it essentially starts and serves itself.  In otherwords, to access my server AND utilize the benefits of Webpack, both need to be running in tandum.  
 
-Gulp will ensure that the server does three main jobs:  initalize the server, watch for changes and rebuild the Webpack when they happen, and reload the browser once all those are complete.  The best of both worlds, so to speak.  The cons of this approach are that Webpack builds can be kinda slow - usually around 3-10 seconds depending on your computer and the number of files that need to be bundled.  If you don't need to mess with the endpoints (or want to use mock data instead), then running *npm run dev* will ONLY start webpack and it's hotloading.  Whenever you hit an endpoint, it'll just return a 404.  
+Gulp will ensure that three key things happen: 1.) that the server is started, 2.) changes that will effect the site will be trigger Webpack and be rebundled, and 3.) will reload the browser once all changes are complete.  The best of both worlds, so to speak.  
 
+The cons of this approach are that Webpack builds can be kinda slow - usually around 3-10 seconds depending on your computer and the number of files that need to be bundled.  If you don't need to mess with the endpoints (or want to use mock data instead), then running *npm run dev* will ONLY start webpack and it's hotloading.  Whenever you hit an endpoint, it'll just return a 404.  
 This is NOT IDEAL.  However, it's much faster for building out components and is recommended if you don't need information from the server.
 
 ### So why even bother with Express?
