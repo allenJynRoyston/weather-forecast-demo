@@ -22,7 +22,8 @@ We're using Webpack, so why do we even need Gulp?  Well an interesting problem c
 
 Gulp will ensure that three key things happen: 1.) that the server is started, 2.) changes that will effect the site will be trigger Webpack and be rebundled, and 3.) will reload the browser once all changes are complete.  The best of both worlds, so to speak.  
 
-The cons of this approach are that Webpack builds can be kinda slow - usually around 3-10 seconds depending on your computer and the number of files that need to be bundled.  If you don't need to mess with the endpoints (or want to use mock data instead), then running *npm run dev* will ONLY start webpack and it's hotloading.  Whenever you hit an endpoint, it'll just return a 404.  
+The cons of this approach are that Webpack builds can be kinda slow - usually around 3-10 seconds depending on your computer and the number of files that need to be bundled.  If you don't need to mess with the endpoints (or want to use mock data instead), then running *npm run dev* will ONLY start webpack and it's hotloading.  Whenever you hit an endpoint, it'll just return a 404.
+
 This is NOT IDEAL.  However, it's much faster for building out components and is recommended if you don't need information from the server.
 
 ### So why even bother with Express?
