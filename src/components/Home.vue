@@ -5,7 +5,7 @@
         v-parallax(src='src/assets/hero.jpg', height='600')
           v-layout.white--text(column='', align-center='', justify-center='')
             h1.white--text.mb-2.display-3 Weather Demo
-            .headline.mb-3.text-xs-center Powered by Vue | Vuetify | ES6 | Webpack | Express4
+            .headline.mb-3.text-xs-center Powered by Vue | Vuetify | ES6 | Webpack | Express4 | x1sdf
             a(@click='backToTop()')
               router-link(@click='backToTop()' to="/forecast")
                 v-btn.blue.lighten-2.mt-5.dark.large Forecast

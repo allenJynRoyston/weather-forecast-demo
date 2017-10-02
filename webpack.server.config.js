@@ -10,7 +10,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     devtool: false,
     output: {
         path: path.resolve(__dirname, './dist'),
-        filename: 'server.js',
+        filename: 'server.min.js',
         libraryTarget: 'commonjs2'
     },
     externals: Object.keys(require('./package.json').dependencies),
