@@ -27,7 +27,7 @@ The cons of this approach are that Webpack builds can be kinda slow - usually ar
 This is NOT IDEAL.  However, it's much faster for building out components and is recommended if you don't need information from the server.
 
 ### So why even bother with Express?
-This build is an all encompassing solution that makes developing AND deployming extremely simple.  It's literally what you see when you develop is what you'll get when you deploy - a facet that, quite frankly, is underappretiated.  A streamlined build/deploy can save time and money, plus you get all the benefits of GZIP compression, Cache-Control and easily customizable scripting that comes with the Express Engine.  Plus, adding a database and endpoints are also much easier compared to some of the other more complex methods available.
+This build is an all encompassing solution that makes developing AND deployming extremely simple.  It's literally what you see when you develop is what you'll get when you deploy - a facet that, quite frankly, is underappretiated.  A streamlined build/deploy can save time and money, plus you get all the benefits of GZIP compression, Cache-Control and easily customizable scripting that comes with the Express Engine.  Plus, adding a database and endpoints are also much easier compared to some of the other more (needlessly complex) frameworks available.
 
 Also, if you're using a service like Heroku, deploying is SUPER simple.  (See below).
 
