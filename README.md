@@ -18,22 +18,17 @@ $ npm run dev
 ```
 
 ### Okay, but why Gulp?
-We're using Webpack, so why do we even need Gulp?  Well an interesting problem came up when I was trying to access an endpoint in my server.js file.  The route (api/forecast/:city) is only available when the server is running, and when using webpack the server.js file is never intialized.  In otherwords, to access the server AND utilize the benefits of webpack, they both need to be running.  Gulp will ensure that the server is started first and then watch for changes that in effect, trigger webpack to rebuild.  The browser will then automatically reload.
+We're using Webpack, so why do we even need Gulp?  Well an interesting problem came up when I was trying to access an endpoint in my server.js file.  The route (api/forecast/:city) is only available when the server is running, but Webpack can't start the Express server.  In otherwords, to access the server AND utilize the benefits of webpack, they both need to be running.  Gulp will ensure that the server does three main jobs:  initalize the server, watch for changes and rebuild the Webpack when they happen, and reload the browser once all those are complete.  The best of both worlds, so to speak.  
 
-The cons of this approach are that Webpack builds are extremly slow - usually around 6-10 seconds.  If you don't need to mess with the endpoints (or want to use mock data instead), then running *npm run dev* will ONLY start webpack and it's hotloading.  It's much faster and is recommended when building out components.  
+The cons of this approach are that Webpack builds can be kinda slow - usually around 3-10 seconds depending on your computer and the number of files that need to be bundled.  If you don't need to mess with the endpoints (or want to use mock data instead), then running *npm run dev* will ONLY start webpack and it's hotloading.  Whenever you hit an endpoint, it'll just return a 404.  NOT IDEAL.  However, it's much faster for building out components and is recommended if you don't need information from the server.
 
+### So why even bother with Express?
+This build is an all encompassing solution that makes developing AND deployming extremely simple.  It's literally what you see when you develop is what you'll get when you deploy - a facet that, quite frankly, is underappretiated.  A streamlined build/deploy can save time and money, plus you get all the benefits of GZIP compression, Cache-Control and easily customizable scripting that comes with the Express Engine.  Plus, adding a database and endpoints are also much easier compared to some of the other more complex methods available.
 
-### Predeployment instructions:
-```sh
-$ npm install
-$ npm run builddev
-$ npm run buildserver
-$ npm start  
-```
+Also, if you're using a service like Heroku, deploying is SUPER simple.  (See below).
 
 ### Heroku Deployment:
 ```sh
-$ npm install
 $ npm run builddev
 $ npm run buildserver
 $ git push heroku master
