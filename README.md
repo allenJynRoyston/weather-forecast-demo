@@ -12,15 +12,15 @@
 $ git clone https://github.com/allenRoyston/weather-forecast-demo.git
 $ cd weather-forecast-demo
 $ npm install
-$ npm run dev
+$ gulp  
+OR
+$ npm run dev 
 ```
-- Browser should open automatically and will hot reload when making changes to components.  
-<br>
-** IMPORTANT:  when running locally, make sure you uncomment one line in src/components/Forecast.vue or you wont get any results back.**
 
-```sh
-let res = await this.$http.get(`/src/assets/testdata.json`);
-```
+### Okay, but why Gulp?
+We're using Webpack, so why do we even need Gulp?  Well an interesting problem came up when I was trying to access an endpoint in my server.js file.  The route (api/forecast/:city) is only available when the server is running, and when using webpack the server.js file is never intialized.  In otherwords, to access the server AND utilize the benefits of webpack, they both need to be running.  Gulp will ensure that the server is started first and then watch for changes that in effect, trigger webpack to rebuild.  The browser will then automatically reload.
+
+The cons of this approach are that Webpack builds are extremly slow - usually around 6-10 seconds.  If you don't need to mess with the endpoints (or want to use mock data instead), then running *npm run dev* will ONLY start webpack and it's hotloading.  It's much faster and is recommended when building out components.  
 
 
 ### Predeployment instructions:
@@ -59,7 +59,7 @@ https://gtmetrix.com/reports/vue-weather-forecast.herokuapp.com/UqajhjGM
 - ~~Fahrenheit/Celcius conversion (actually built in, just didn't add it in time - damnit)~~
 - More robust API
 - ~~Fix that damn footer~~
-- Instantiate server seperate from the webpack build
+- ~~Instantiate server seperate from the webpack build~~
 
 
 ### Additional stuff
