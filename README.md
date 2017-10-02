@@ -33,7 +33,7 @@ Also, if you're using a service like Heroku, deploying is SUPER simple.  (See be
 
 ### Heroku Deployment:
 ```sh
-$ npm run builddev
+// run npm install, gulp, and make your changes
 $ npm run buildserver
 $ git push heroku master
 ```
