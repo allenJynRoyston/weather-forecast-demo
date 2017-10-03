@@ -12,7 +12,6 @@
 $ git clone https://github.com/allenRoyston/weather-forecast-demo.git
 $ cd weather-forecast-demo
 $ npm install
-$ npm run builddev
 $ gulp  
 OR
 $ npm run dev 
