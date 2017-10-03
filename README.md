@@ -24,7 +24,7 @@ Gulp will ensure that three key things happen: 1.) that the server is started, 2
 
 The cons of this approach are that Webpack builds can be kinda slow - usually around 3-10 seconds depending on your computer and the number of files that need to be bundled.  If you don't need to mess with the endpoints (or want to use mock data instead), then running *npm run dev* will ONLY start webpack and it's hotloading.  Whenever you hit an endpoint, it'll just return a 404.
 
-This is NOT IDEAL.  However, it's much faster for building out components and is recommended if you don't need information from the server.
+This is NOT IDEAL and I'll need to find a better solution.  However, for the interim, it's recommended to build out components first via npm run dev, then touch things up with gulp.  
 
 ### So why even bother with Express?
 This build is an all encompassing solution that makes developing AND deployming extremely simple.  It's literally what you see when you develop is what you'll get when you deploy - a facet that, quite frankly, is underappretiated.  A streamlined build/deploy can save time and money, plus you get all the benefits of GZIP compression, Cache-Control and easily customizable scripting that comes with the Express Engine.  Plus, adding a database and endpoints are also much easier compared to some of the other more (needlessly complex) frameworks available.
