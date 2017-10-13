@@ -79,19 +79,27 @@ export default {
         this.clearResults()
         let res = await this.$http.get(`/api/forecast/${cityName}`);
         //let res = await this.$http.get(`/src/assets/testdata.json`);
+        let _dateObj = this.formatResults(res.body.list);
         this.forecastResults = res.body;
-        for (let item of res.body.list){
-          let key = moment(item.dt_txt).format('dddd');
-          if(!this.dateObject.hasOwnProperty(key)){
-            this.dateObject[key] = []
-          }
-          this.count++;
-          this.dateObject[key].push(item)
-        }
+        this.dateObject = _dateObj.results;
+        this.count = _dateObj.count;
         this.isReady = true;
       } catch (reason) {
 
       }
+    },
+    formatResults(data){
+      let _results = {};
+      let count = 0;
+      for (let item of data){
+        let key = moment(item.dt_txt).format('dddd');
+        if(!_results.hasOwnProperty(key)){
+          _results[key] = []
+        }
+        count++;
+        _results[key].push(item)
+      }
+      return {results: _results, count: count};
     },
     clearResults(){
       this.forecastResults = null;
