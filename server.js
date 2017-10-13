@@ -2,8 +2,6 @@ const express = require('express')
 const request = require('request')
 const fs = require('fs')
 const path = require('path')
-const bundle = fs.readFileSync(path.join(__dirname, './dist/server.min.js'), 'utf8')
-const renderer = require('vue-server-renderer').createBundleRenderer(bundle)
 const index = fs.readFileSync(path.join(__dirname, './index.html'), 'utf8')
 const compression = require('compression');
 const app = express()
@@ -36,17 +34,9 @@ app.get('/api/forecast/:city', (req, res) => {
 })
 
 app.get('*', (req, res) => {
-    renderer.renderToString({},
-        (err, html) => {
-          try{
-            res.send(index.replace('<div id="app"></div>', html))
-          }
-          catch (err) {
-            return res.sendStatus(500)
-          }
-        }
-    )
+  res.send(index)
 })
+
 
 
 // Serve the files on port 3000.
