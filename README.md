@@ -34,7 +34,7 @@ Also, if you're using a service like Heroku, deploying is SUPER simple.  (See be
 ### Deploy to Live Environment (Heroku Example):
 ```sh
 // run npm install, gulp, and make your changes
-$ npm run buildserver
+$ npm run build
 $ git push heroku master
 ```
 
