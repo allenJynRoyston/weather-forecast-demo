@@ -9,6 +9,7 @@ Thumbs.db
 
 # PACKAGES #
 ######################
+dist/
 node_modules/
 bower_components/
 public/node_modules/
